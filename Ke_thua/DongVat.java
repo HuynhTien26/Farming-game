@@ -1,13 +1,17 @@
 package Ke_thua;
 
 public abstract class DongVat extends SinhVat{
-  public DongVat(String ten, int tuoi) {
+  protected String Loaithucan;
+  public DongVat(String ten, int tuoi, String Loaithucan) {
 	  super(ten, tuoi);
+	  this.Loaithucan = Loaithucan;
   }
   
   //mỗi loài có tiếng khác nhau
   public abstract void keu();
-  
+
+  //mỗi loài ăn khác nhau
+  public abstract void an();
   @Override
   public void phattrien() {
 	  tuoi++;
@@ -19,3 +23,4 @@ public abstract class DongVat extends SinhVat{
 	  System.out.println("Mã số: " + maso+ "\nTên: " + ten +"\nTuổi: "+ tuoi + "\nTrạng thái: "+ trangthai);
   }
 }
+
