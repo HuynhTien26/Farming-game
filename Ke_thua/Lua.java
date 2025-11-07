@@ -6,6 +6,12 @@ public class Lua extends Thucvat implements Thuhoach{
 		}
 	 
 	 @Override
+     public void tuoiNuoc() {
+         this.daTuoiNuoc = true;
+         System.out.println(ten + " đã được tưới nước. Sẵn sàng cho mùa vụ.");
+     }
+	 
+	 @Override
 	 public Sanpham chosanpham() {
 		 return new Gao();
 	 }
