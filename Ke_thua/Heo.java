@@ -2,7 +2,7 @@ package Ke_thua;
 
 public class Heo extends DongVat implements Thuhoach {
     public Heo(String ten, int tuoi) {
-        super(ten, tuoi);
+        super(ten, tuoi, "Cám");
     }
 
     @Override
@@ -10,6 +10,11 @@ public class Heo extends DongVat implements Thuhoach {
         System.out.println(ten + " kêu: Ụt ịt");
     }
 
+    @Override
+    public void an() {
+        System.out.println(ten + " đang ăn " + Loaithucan);
+    }
+    
     @Override
     public Sanpham chosanpham() {
         return new Thit();
