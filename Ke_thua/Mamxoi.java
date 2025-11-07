@@ -7,7 +7,14 @@ public class Mamxoi extends Thucvat implements Thuhoach{
 	}
 
 	 @Override
+	 public void tuoiNuoc() {
+	     this.daTuoiNuoc = true;
+	     System.out.println(ten + " đã được tưới nước. Sẵn sàng phát triển.");
+	 }
+	 
+	 @Override
 	 public Sanpham chosanpham() {
 		 return new Traimamxoi();
 	 }
+	 
 	 }
