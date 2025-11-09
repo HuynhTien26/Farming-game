@@ -1,11 +1,9 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Kho {
 
-    private List<SanPham> danhSachSanPham;
+    private List<Sanpham> danhSachSanPham;
 
     // Static counter
     private static int demKho = 0;
@@ -17,25 +15,95 @@ public class Kho {
     }
 
     /**
-     * Thêm sản phẩm vào kho
+     * Thêm sản phẩm vào kho (có stack)
+     * Nếu sản phẩm đã có trong kho, tăng số lượng
      */
-    public void themSanPham(SanPham sp) {
-        danhSachSanPham.add(sp);
-        System.out.println("[OK] Đã thêm " + sp.getTenSP() + " vào kho");
+    public void themSanPham(Sanpham sp) {
+        // Tìm xem sản phẩm đã có trong kho chưa
+        Sanpham spTonTai = timSanPham(sp.getTenSP());
+
+        if (spTonTai != null) {
+            // Sản phẩm đã có, tăng số lượng
+            spTonTai.tangsoluong(sp.getSoluong());
+            System.out.println(
+                "✓ Đã thêm " +
+                    sp.getSoluong() +
+                    " " +
+                    sp.getTenSP() +
+                    " vào kho"
+            );
+            System.out.println("  Tổng số lượng: " + spTonTai.getSoluong());
+        } else {
+            // Sản phẩm mới, thêm vào danh sách
+            danhSachSanPham.add(sp);
+            System.out.println(
+                "✓ Đã thêm sản phẩm mới " + sp.getTenSP() + " vào kho"
+            );
+        }
     }
 
     /**
-     * Xóa sản phẩm (bán hoặc sử dụng)
+     * Tìm sản phẩm theo tên (trả về object đầu tiên tìm thấy)
      */
-    public boolean xoaSanPham(String tenSP) {
-        for (int i = 0; i < danhSachSanPham.size(); i++) {
-            if (danhSachSanPham.get(i).getTenSP().equalsIgnoreCase(tenSP)) {
-                danhSachSanPham.remove(i);
-                System.out.println("[OK] Đã lấy " + tenSP + " ra khỏi kho");
-                return true;
+    private Sanpham timSanPham(String tenSP) {
+        for (Sanpham sp : danhSachSanPham) {
+            if (sp.getTenSP().equalsIgnoreCase(tenSP)) {
+                return sp;
             }
         }
-        System.out.println("[X] Không tìm thấy " + tenSP + " trong kho");
+        return null;
+    }
+
+    /**
+     * Lấy sản phẩm ra khỏi kho (giảm số lượng hoặc xóa)
+     * @param tenSP Tên sản phẩm
+     * @param soLuong Số lượng muốn lấy
+     * @return true nếu thành công
+     */
+    public boolean laySanPham(String tenSP, int soLuong) {
+        Sanpham sp = timSanPham(tenSP);
+
+        if (sp == null) {
+            System.out.println("❌ Không tìm thấy " + tenSP + " trong kho");
+            return false;
+        }
+
+        if (sp.getSoluong() < soLuong) {
+            System.out.println("❌ Không đủ " + tenSP + " trong kho");
+            System.out.println(
+                "   Có sẵn: " + sp.getSoluong() + " | Yêu cầu: " + soLuong
+            );
+            return false;
+        }
+
+        // Giảm số lượng
+        sp.tangsoluong(-soLuong);
+        System.out.println(
+            "✓ Đã lấy " + soLuong + " " + tenSP + " ra khỏi kho"
+        );
+
+        // Nếu hết, xóa khỏi danh sách
+        if (sp.getSoluong() <= 0) {
+            danhSachSanPham.remove(sp);
+            System.out.println("  (Đã hết " + tenSP + " trong kho)");
+        } else {
+            System.out.println("  Còn lại: " + sp.getSoluong());
+        }
+
+        return true;
+    }
+
+    /**
+     * Xóa toàn bộ sản phẩm theo tên
+     */
+    public boolean xoaSanPham(String tenSP) {
+        Sanpham sp = timSanPham(tenSP);
+        if (sp != null) {
+            danhSachSanPham.remove(sp);
+            System.out.println("✓ Đã xóa " + tenSP + " khỏi kho");
+            return true;
+        }
+        System.out.println("❌ Không tìm thấy " + tenSP + " trong kho");
         return false;
     }
 
@@ -43,25 +111,15 @@ public class Kho {
      * Đếm số lượng sản phẩm theo tên
      */
     public int demSoLuong(String tenSP) {
-        int count = 0;
-        for (SanPham sp : danhSachSanPham) {
-            if (sp.getTenSP().equalsIgnoreCase(tenSP)) {
-                count++;
-            }
-        }
-        return count;
+        Sanpham sp = timSanPham(tenSP);
+        return (sp != null) ? sp.getSoluong() : 0;
     }
 
     /**
-     * Lấy thống kê tồn kho
+     * Kiểm tra có đủ sản phẩm không
      */
-    public Map<String, Integer> thongKeTonKho() {
-        Map<String, Integer> thongKe = new HashMap<>();
-        for (SanPham sp : danhSachSanPham) {
-            String ten = sp.getTenSP();
-            thongKe.put(ten, thongKe.getOrDefault(ten, 0) + 1);
-        }
-        return thongKe;
+    public boolean coDuSanPham(String tenSP, int soLuongCanThiet) {
+        return demSoLuong(tenSP) >= soLuongCanThiet;
     }
 
     /**
@@ -69,39 +127,33 @@ public class Kho {
      */
     public void hienThiTonKho() {
         System.out.println("\n=== KHO " + maKho + " ===");
-        System.out.println("Tổng số sản phẩm: " + danhSachSanPham.size());
 
         if (danhSachSanPham.isEmpty()) {
             System.out.println("(Kho trống)");
         } else {
-            Map<String, Integer> thongKe = thongKeTonKho();
-            System.out.println("\nThống kê tồn kho:");
-            for (Map.Entry<String, Integer> entry : thongKe.entrySet()) {
-                System.out.println(
-                    "  - " +
-                        entry.getKey() +
-                        ": " +
-                        entry.getValue() +
-                        " sản phẩm"
-                );
+            System.out.println("Danh sách sản phẩm trong kho:\n");
+
+            int stt = 1;
+            double tongGiaTri = 0;
+
+            for (Sanpham sp : danhSachSanPham) {
+                System.out.print(stt++ + ". ");
+                sp.hienthithongtin();
+                tongGiaTri += sp.getGiaban() * sp.getSoluong();
+                System.out.println("---");
             }
 
-            // Tính tổng giá trị kho
-            double tongGiaTri = 0;
-            for (SanPham sp : danhSachSanPham) {
-                tongGiaTri += sp.getGiaBan();
-            }
             System.out.println("\nTổng giá trị kho: " + tongGiaTri + " VNĐ");
         }
     }
 
     /**
-     * Tìm kiếm sản phẩm theo tên
+     * Tìm kiếm sản phẩm theo tên (hỗ trợ tìm gần đúng)
      */
-    public List<SanPham> timKiemSanPham(String tenSP) {
-        List<SanPham> ketQua = new ArrayList<>();
-        for (SanPham sp : danhSachSanPham) {
-            if (sp.getTenSP().toLowerCase().contains(tenSP.toLowerCase())) {
+    public List<Sanpham> timKiemSanPham(String tuKhoa) {
+        List<Sanpham> ketQua = new ArrayList<>();
+        for (Sanpham sp : danhSachSanPham) {
+            if (sp.getTenSP().toLowerCase().contains(tuKhoa.toLowerCase())) {
                 ketQua.add(sp);
             }
         }
@@ -109,11 +161,15 @@ public class Kho {
     }
 
     // Getters
-    public List<SanPham> getDanhSachSanPham() {
+    public List<Sanpham> getDanhSachSanPham() {
         return danhSachSanPham;
     }
 
     public String getMaKho() {
         return maKho;
+    }
+
+    public int getTongSoLoaiSanPham() {
+        return danhSachSanPham.size();
     }
 }
