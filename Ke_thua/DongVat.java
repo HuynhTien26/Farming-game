@@ -1,4 +1,4 @@
-package Ke_thua;
+package ke_thua;
 
 public abstract class DongVat extends SinhVat{
   protected String Loaithucan;

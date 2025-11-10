@@ -1,4 +1,4 @@
-package Ke_thua;
+package ke_thua;
 
 public class Lua extends Thucvat implements Thuhoach{
 	 public Lua(String ten, int tuoi) {

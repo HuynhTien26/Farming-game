@@ -1,4 +1,4 @@
-package Ke_thua;
+package ke_thua;
 
 public class Ngo extends Thucvat implements Thuhoach{
 	

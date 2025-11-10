@@ -1,4 +1,4 @@
-package Ke_thua;
+package ke_thua;
 
 public class BapNgo extends Sanpham {
 	public BapNgo() {

@@ -1,4 +1,4 @@
-package Ke_thua;
+package ke_thua;
 
 public class Ga extends DongVat implements Thuhoach {
     public Ga(String ten, int tuoi) {

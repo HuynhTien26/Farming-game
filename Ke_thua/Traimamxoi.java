@@ -1,4 +1,4 @@
-package Ke_thua;
+package ke_thua;
 
 public class Traimamxoi extends Sanpham {
 	public Traimamxoi() {

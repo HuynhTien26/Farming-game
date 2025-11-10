@@ -1,4 +1,4 @@
-package Ke_thua;
+package ke_thua;
 
 public abstract class Thucvat extends SinhVat {
 	protected int giaiDoanPhatTrien;

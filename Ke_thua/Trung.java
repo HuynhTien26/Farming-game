@@ -1,4 +1,4 @@
-package Ke_thua;
+package ke_thua;
 
 public class Trung extends Sanpham{
 	public Trung() {
