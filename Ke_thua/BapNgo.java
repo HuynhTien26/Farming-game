@@ -2,8 +2,8 @@ package ke_thua;
 
 public class BapNgo extends Sanpham {
 	public BapNgo() {
-		super ("Bắp Ngô");
-		this.giaban=21000;
+		super("Bắp Ngô");
+		this.giaban = 21000;
 	}
 
 	@Override

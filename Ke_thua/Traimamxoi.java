@@ -2,8 +2,8 @@ package ke_thua;
 
 public class Traimamxoi extends Sanpham {
 	public Traimamxoi() {
-		super ("Trái mâm xôi");
-		this.giaban=25000;
+		super("Trái mâm xôi");
+		this.giaban = 25000;
 	}
 
 	@Override

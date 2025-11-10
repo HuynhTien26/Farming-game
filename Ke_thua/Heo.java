@@ -14,7 +14,7 @@ public class Heo extends DongVat implements Thuhoach {
     public void an() {
         System.out.println(ten + " đang ăn " + Loaithucan);
     }
-    
+
     @Override
     public Sanpham chosanpham() {
         return new Thit();
