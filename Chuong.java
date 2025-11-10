@@ -36,7 +36,7 @@ public class Chuong implements NangCap {
         }
         danhSachDongVat.add(dongVat);
         System.out.println(
-            "[OK] Đã thêm " + dongVat.getTen() + " vào chuồng " + maChuong
+            "[+] Đã thêm " + dongVat.getTen() + " vào chuồng " + maChuong
         );
         return true;
     }
@@ -49,7 +49,7 @@ public class Chuong implements NangCap {
             if (danhSachDongVat.get(i).getMaso().equals(maSo)) {
                 DongVat dv = danhSachDongVat.remove(i);
                 System.out.println(
-                    "[OK] Đã xóa " + dv.getTen() + " khỏi chuồng"
+                    "[+] Đã xóa " + dv.getTen() + " khỏi chuồng"
                 );
                 return true;
             }
@@ -98,7 +98,7 @@ public class Chuong implements NangCap {
         for (DongVat dv : danhSachDongVat) {
             dv.an();
         }
-        System.out.println("[OK] Đã cho tất cả động vật ăn xong!");
+        System.out.println("[+] Đã cho tất cả động vật ăn xong!");
     }
 
     /**
@@ -145,9 +145,9 @@ public class Chuong implements NangCap {
         capDo++;
         sucChuaToiDa += 3; // Mỗi cấp tăng thêm 3 chỗ
         chiPhiNangCap *= 1.5; // Chi phí tăng 50% mỗi cấp
-        System.out.println("[OK] Đã nâng cấp chuồng lên cấp " + capDo);
-        System.out.println("     Sức chứa mới: " + sucChuaToiDa);
-        System.out.println("     Chi phí nâng cấp tiếp theo: " + chiPhiNangCap);
+        System.out.println("[+] Đã nâng cấp chuồng lên cấp " + capDo);
+        System.out.println("    Sức chứa mới: " + sucChuaToiDa);
+        System.out.println("    Chi phí nâng cấp tiếp theo: " + chiPhiNangCap);
     }
 
     // Getters

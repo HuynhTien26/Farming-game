@@ -19,14 +19,14 @@ public class Kho {
      * Nếu sản phẩm đã có trong kho, tăng số lượng
      */
     public void themSanPham(Sanpham sp) {
-        // Tìm xem sản phẩm đã có trong kho chưa
+        // Tìm xem sp đã có trong kho chưa
         Sanpham spTonTai = timSanPham(sp.getTenSP());
 
         if (spTonTai != null) {
-            // Sản phẩm đã có, tăng số lượng
+            // Sp đã có, tăng số lượng
             spTonTai.tangsoluong(sp.getSoluong());
             System.out.println(
-                "✓ Đã thêm " +
+                "[+] Đã thêm " +
                     sp.getSoluong() +
                     " " +
                     sp.getTenSP() +
@@ -34,16 +34,16 @@ public class Kho {
             );
             System.out.println("  Tổng số lượng: " + spTonTai.getSoluong());
         } else {
-            // Sản phẩm mới, thêm vào danh sách
+            // Sp mới, thêm vào danh sách
             danhSachSanPham.add(sp);
             System.out.println(
-                "✓ Đã thêm sản phẩm mới " + sp.getTenSP() + " vào kho"
+                "[+] Đã thêm sản phẩm mới " + sp.getTenSP() + " vào kho"
             );
         }
     }
 
     /**
-     * Tìm sản phẩm theo tên (trả về object đầu tiên tìm thấy)
+     * Tìm sp theo tên (trả về object đầu tiên tìm thấy)
      */
     private Sanpham timSanPham(String tenSP) {
         for (Sanpham sp : danhSachSanPham) {
@@ -55,21 +55,21 @@ public class Kho {
     }
 
     /**
-     * Lấy sản phẩm ra khỏi kho (giảm số lượng hoặc xóa)
-     * @param tenSP Tên sản phẩm
+     * Lấy sp ra khỏi kho (giảm số lượng hoặc xóa)
+     * @param tenSP   Tên sp
      * @param soLuong Số lượng muốn lấy
-     * @return true nếu thành công
+     * @return true   nếu thành công
      */
     public boolean laySanPham(String tenSP, int soLuong) {
         Sanpham sp = timSanPham(tenSP);
 
         if (sp == null) {
-            System.out.println("❌ Không tìm thấy " + tenSP + " trong kho");
+            System.out.println("[X] Không tìm thấy " + tenSP + " trong kho");
             return false;
         }
 
         if (sp.getSoluong() < soLuong) {
-            System.out.println("❌ Không đủ " + tenSP + " trong kho");
+            System.out.println("[X] Không đủ " + tenSP + " trong kho");
             System.out.println(
                 "   Có sẵn: " + sp.getSoluong() + " | Yêu cầu: " + soLuong
             );
@@ -79,7 +79,7 @@ public class Kho {
         // Giảm số lượng
         sp.tangsoluong(-soLuong);
         System.out.println(
-            "✓ Đã lấy " + soLuong + " " + tenSP + " ra khỏi kho"
+            "[+] Đã lấy " + soLuong + " " + tenSP + " ra khỏi kho"
         );
 
         // Nếu hết, xóa khỏi danh sách
@@ -94,21 +94,21 @@ public class Kho {
     }
 
     /**
-     * Xóa toàn bộ sản phẩm theo tên
+     * Xóa toàn bộ sp theo tên
      */
     public boolean xoaSanPham(String tenSP) {
         Sanpham sp = timSanPham(tenSP);
         if (sp != null) {
             danhSachSanPham.remove(sp);
-            System.out.println("✓ Đã xóa " + tenSP + " khỏi kho");
+            System.out.println("[+] Đã xóa " + tenSP + " khỏi kho");
             return true;
         }
-        System.out.println("❌ Không tìm thấy " + tenSP + " trong kho");
+        System.out.println("[X] Không tìm thấy " + tenSP + " trong kho");
         return false;
     }
 
     /**
-     * Đếm số lượng sản phẩm theo tên
+     * Đếm số lượng sp theo tên
      */
     public int demSoLuong(String tenSP) {
         Sanpham sp = timSanPham(tenSP);
@@ -116,7 +116,7 @@ public class Kho {
     }
 
     /**
-     * Kiểm tra có đủ sản phẩm không
+     * Kiểm tra có đủ sp ko
      */
     public boolean coDuSanPham(String tenSP, int soLuongCanThiet) {
         return demSoLuong(tenSP) >= soLuongCanThiet;
@@ -148,7 +148,7 @@ public class Kho {
     }
 
     /**
-     * Tìm kiếm sản phẩm theo tên (hỗ trợ tìm gần đúng)
+     * Tìm kiếm sp theo tên (có tìm gần đúng)
      */
     public List<Sanpham> timKiemSanPham(String tuKhoa) {
         List<Sanpham> ketQua = new ArrayList<>();
