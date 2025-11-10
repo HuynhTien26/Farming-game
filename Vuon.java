@@ -34,7 +34,7 @@ public class Vuon implements NangCap {
         }
         danhSachCayTrong.add(thucVat);
         System.out.println(
-            "[OK] Đã trồng " + thucVat.getTen() + " vào vườn " + maVuon
+            "[+] Đã trồng " + thucVat.getTen() + " vào vườn " + maVuon
         );
         return true;
     }
@@ -46,7 +46,7 @@ public class Vuon implements NangCap {
         for (int i = 0; i < danhSachCayTrong.size(); i++) {
             if (danhSachCayTrong.get(i).getMaso().equals(maSo)) {
                 Thucvat tv = danhSachCayTrong.remove(i);
-                System.out.println("[OK] Đã nhổ " + tv.getTen() + " khỏi vườn");
+                System.out.println("[+] Đã nhổ " + tv.getTen() + " khỏi vườn");
                 return true;
             }
         }
@@ -92,7 +92,7 @@ public class Vuon implements NangCap {
         for (Thucvat tv : danhSachCayTrong) {
             tv.tuoiNuoc();
         }
-        System.out.println("[OK] Đã tưới nước cho tất cả cây trồng!");
+        System.out.println("[+] Đã tưới nước cho tất cả cây trồng!");
     }
 
     /**
@@ -138,9 +138,9 @@ public class Vuon implements NangCap {
         capDo++;
         sucChuaToiDa += 5; // Mỗi cấp tăng thêm 5 chỗ
         chiPhiNangCap *= 1.5; // Chi phí tăng 50% mỗi cấp
-        System.out.println("[OK] Đã nâng cấp vườn lên cấp " + capDo);
-        System.out.println("     Sức chứa mới: " + sucChuaToiDa);
-        System.out.println("     Chi phí nâng cấp tiếp theo: " + chiPhiNangCap);
+        System.out.println("[+] Đã nâng cấp vườn lên cấp " + capDo);
+        System.out.println("    Sức chứa mới: " + sucChuaToiDa);
+        System.out.println("    Chi phí nâng cấp tiếp theo: " + chiPhiNangCap);
     }
 
     // Getters
