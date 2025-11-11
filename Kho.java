@@ -26,13 +26,9 @@ public class Kho {
             // Sp đã có, tăng số lượng
             spTonTai.tangsoluong(sp.getSoluong());
             System.out.println(
-                "[+] Đã thêm " +
-                    sp.getSoluong() +
-                    " " +
-                    sp.getTenSP() +
-                    " vào kho"
+                "[+] Đã thêm " + sp.getSoluong() + " " + sp.getTenSP() + " vào kho"
             );
-            System.out.println("  Tổng số lượng: " + spTonTai.getSoluong());
+            System.out.println("    Tổng số lượng: " + spTonTai.getSoluong());
         } else {
             // Sp mới, thêm vào danh sách
             danhSachSanPham.add(sp);
@@ -85,9 +81,9 @@ public class Kho {
         // Nếu hết, xóa khỏi danh sách
         if (sp.getSoluong() <= 0) {
             danhSachSanPham.remove(sp);
-            System.out.println("  (Đã hết " + tenSP + " trong kho)");
+            System.out.println("    (Đã hết " + tenSP + " trong kho)");
         } else {
-            System.out.println("  Còn lại: " + sp.getSoluong());
+            System.out.println("    Còn lại: " + sp.getSoluong());
         }
 
         return true;

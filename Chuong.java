@@ -29,9 +29,7 @@ public class Chuong implements NangCap {
      */
     public boolean themDongVat(DongVat dongVat) {
         if (danhSachDongVat.size() >= sucChuaToiDa) {
-            System.out.println(
-                "[X] Chuồng đã đầy! Sức chứa tối đa: " + sucChuaToiDa
-            );
+            System.out.println("[X] Chuồng đã đầy! Sức chứa tối đa: " + sucChuaToiDa);
             return false;
         }
         danhSachDongVat.add(dongVat);
@@ -48,9 +46,7 @@ public class Chuong implements NangCap {
         for (int i = 0; i < danhSachDongVat.size(); i++) {
             if (danhSachDongVat.get(i).getMaso().equals(maSo)) {
                 DongVat dv = danhSachDongVat.remove(i);
-                System.out.println(
-                    "[+] Đã xóa " + dv.getTen() + " khỏi chuồng"
-                );
+                System.out.println("[+] Đã xóa " + dv.getTen() + " khỏi chuồng");
                 return true;
             }
         }
@@ -88,9 +84,7 @@ public class Chuong implements NangCap {
      */
     public void choTatCaAn() {
         if (danhSachDongVat.isEmpty()) {
-            System.out.println(
-                "Chuồng trống, không có động vật nào để cho ăn."
-            );
+            System.out.println("Chuồng trống, không có động vật nào để cho ăn.");
             return;
         }
 
@@ -107,12 +101,7 @@ public class Chuong implements NangCap {
     public void hienThiDanhSach() {
         System.out.println("\n=== CHUỒNG " + maChuong + " ===");
         System.out.println(
-            "Cấp độ: " +
-                capDo +
-                " | Sức chứa: " +
-                danhSachDongVat.size() +
-                "/" +
-                sucChuaToiDa
+            "Cấp độ: " + capDo + " | Sức chứa: " + danhSachDongVat.size() + "/" + sucChuaToiDa
         );
         System.out.println("Trạng thái: " + trangThai);
 
@@ -143,8 +132,8 @@ public class Chuong implements NangCap {
     @Override
     public void nangCap() {
         capDo++;
-        sucChuaToiDa += 3; // Mỗi cấp tăng thêm 3 chỗ
-        chiPhiNangCap *= 1.5; // Chi phí tăng 50% mỗi cấp
+        sucChuaToiDa += 3;      // Mỗi cấp tăng thêm 3 chỗ
+        chiPhiNangCap *= 1.5;   // Chi phí tăng 50% mỗi cấp
         System.out.println("[+] Đã nâng cấp chuồng lên cấp " + capDo);
         System.out.println("    Sức chứa mới: " + sucChuaToiDa);
         System.out.println("    Chi phí nâng cấp tiếp theo: " + chiPhiNangCap);

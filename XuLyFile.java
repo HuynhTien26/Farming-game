@@ -6,7 +6,7 @@ public class XuLyFile {
 
     private static final String FILE_SAVE = "game_save.txt";
 
-    /**
+    /** 
      * Save game
      */
     public void luuGame(
@@ -23,46 +23,23 @@ public class XuLyFile {
             writer.println("CHUONG_CAP:" + chuong.getCapDo());
             writer.println("CHUONG_COUNT:" + chuong.getSoLuongDongVat());
             for (DongVat dv : chuong.getDanhSachDongVat()) {
-                writer.println(
-                    "DONGVAT:" +
-                        dv.getMaso() +
-                        "," +
-                        dv.getTen() +
-                        "," +
-                        dv.getTuoi()
-                );
+                writer.println("DONGVAT:" + dv.getMaso() + "," + dv.getTen() + "," + dv.getTuoi());
             }
 
             // Lưu thông tin vườn
             writer.println("VUON_CAP:" + vuon.getCapDo());
             writer.println("VUON_COUNT:" + vuon.getSoLuongCayTrong());
             for (Thucvat tv : vuon.getDanhSachCayTrong()) {
-                writer.println(
-                    "THUCVAT:" +
-                        tv.getMaso() +
-                        "," +
-                        tv.getTen() +
-                        "," +
-                        tv.getTuoi()
-                );
+                writer.println("THUCVAT:" + tv.getMaso() + "," + tv.getTen() + "," + tv.getTuoi());
             }
 
             // Lưu thông tin kho (với số lượng)
             writer.println("KHO_COUNT:" + kho.getTongSoLoaiSanPham());
             for (Sanpham sp : kho.getDanhSachSanPham()) {
-                writer.println(
-                    "SANPHAM:" +
-                        sp.getTenSP() +
-                        "," +
-                        sp.getGiaban() +
-                        "," +
-                        sp.getSoluong()
-                );
+                writer.println("SANPHAM:" + sp.getTenSP() + "," + sp.getGiaban() + "," + sp.getSoluong());
             }
 
-            System.out.println(
-                "[+] Đã lưu game thành công vào file: " + FILE_SAVE
-            );
+            System.out.println("[+] Đã lưu game thành công vào file: " + FILE_SAVE);
         } catch (IOException e) {
             System.out.println("[X] Lỗi khi lưu game: " + e.getMessage());
         }
@@ -99,21 +76,15 @@ public class XuLyFile {
                 }
             }
 
-            System.out.println(
-                "[+] Đã tải game thành công từ file: " + FILE_SAVE
-            );
-            System.out.println("  Tiền: " + data.tien);
-            System.out.println("  Cấp chuồng: " + data.chuongCap);
-            System.out.println("  Cấp vườn: " + data.vuonCap);
-            System.out.println("  Số động vật: " + data.dongVatData.size());
-            System.out.println("  Số thực vật: " + data.thucVatData.size());
-            System.out.println(
-                "  Số loại sản phẩm: " + data.sanPhamData.size()
-            );
+            System.out.println("[+] Đã tải game thành công từ file: " + FILE_SAVE);
+            System.out.println("    Tiền: " + data.tien);
+            System.out.println("    Cấp chuồng: " + data.chuongCap);
+            System.out.println("    Cấp vườn: " + data.vuonCap);
+            System.out.println("    Số động vật: " + data.dongVatData.size());
+            System.out.println("    Số thực vật: " + data.thucVatData.size());
+            System.out.println("    Số loại sản phẩm: " + data.sanPhamData.size());
         } catch (FileNotFoundException e) {
-            System.out.println(
-                "[!] Không tìm thấy file save. Bắt đầu game mới."
-            );
+            System.out.println("[!] Không tìm thấy file save. Bắt đầu game mới.");
         } catch (IOException e) {
             System.out.println("[X] Lỗi khi tải game: " + e.getMessage());
         }

@@ -27,15 +27,11 @@ public class Vuon implements NangCap {
      */
     public boolean themThucVat(Thucvat thucVat) {
         if (danhSachCayTrong.size() >= sucChuaToiDa) {
-            System.out.println(
-                "[X] Vườn đã đầy! Sức chứa tối đa: " + sucChuaToiDa
-            );
+            System.out.println("[X] Vườn đã đầy! Sức chứa tối đa: " + sucChuaToiDa);
             return false;
         }
         danhSachCayTrong.add(thucVat);
-        System.out.println(
-            "[+] Đã trồng " + thucVat.getTen() + " vào vườn " + maVuon
-        );
+        System.out.println("[+] Đã trồng " + thucVat.getTen() + " vào vườn " + maVuon);
         return true;
     }
 
@@ -101,12 +97,7 @@ public class Vuon implements NangCap {
     public void hienThiDanhSach() {
         System.out.println("\n=== VƯỜN " + maVuon + " ===");
         System.out.println(
-            "Cấp độ: " +
-                capDo +
-                " | Sức chứa: " +
-                danhSachCayTrong.size() +
-                "/" +
-                sucChuaToiDa
+            "Cấp độ: " + capDo + " | Sức chứa: " + danhSachCayTrong.size() + "/" + sucChuaToiDa
         );
 
         if (danhSachCayTrong.isEmpty()) {
